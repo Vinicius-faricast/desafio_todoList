@@ -1,4 +1,4 @@
-CREATE TABLE todos (
+CREATE TABLE tasks (
  id VARCHAR(200) PRIMARY KEY UNIQUE NOT NULL,
  description TEXT NOT NULL,
 responsible INT NOT NULL
