@@ -1,0 +1,5 @@
+CREATE TABLE todos (
+ id VARCHAR(200) PRIMARY KEY UNIQUE NOT NULL,
+ description TEXT NOT NULL,
+responsible INT NOT NULL
+);
