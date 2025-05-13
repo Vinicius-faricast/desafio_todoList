@@ -23,8 +23,9 @@ private TaskRepository repository;
         );
     }
 
-    private ResponseTaskDTO createTask(RequestTaskDTO dto){
-        Task newTask = new Task(null, dto.description(), dto.responsible());
+    public ResponseTaskDTO createTask(RequestTaskDTO dto){
+        Task newTask = new Task(dto.description(), dto.responsible());
+//        Task createdNewTask = repository.save(newTask);
         repository.save(newTask);
         return toResponseDTO(newTask);
     }
