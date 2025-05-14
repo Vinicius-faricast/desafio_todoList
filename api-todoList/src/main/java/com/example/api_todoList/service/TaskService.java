@@ -33,6 +33,7 @@ private TaskRepository repository;
         return toResponseDTO(newTask);
     }
 
+
     public List<ResponseTaskDTO> listTask(){
         return repository.findAll()
                 .stream()
