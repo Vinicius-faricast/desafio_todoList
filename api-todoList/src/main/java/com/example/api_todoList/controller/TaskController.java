@@ -22,4 +22,21 @@ public class TaskController {
         ResponseTaskDTO taskCreate = service.createTask(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(taskCreate);
     }
+
+
+    @GetMapping
+    public ResponseEntity<List<ResponseTaskDTO>> listTask(){
+        List<ResponseTaskDTO> Tasks = service.listTask();
+        return ResponseEntity.ok(Tasks);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ResponseTaskDTO> getTaskById(@PathVariable Long id){
+        try{
+            ResponseTaskDTO task = service.taskById(id);
+            return ResponseEntity.ok(task);
+        }catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
