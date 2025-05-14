@@ -29,4 +29,18 @@ private TaskRepository repository;
         repository.save(newTask);
         return toResponseDTO(newTask);
     }
+
+
+    public List<ResponseTaskDTO> listTask(){
+        return repository.findAll()
+                .stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    public ResponseTaskDTO taskById(Long id){
+        return repository.findById(id)
+                .map(this::toResponseDTO)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+    }
 }
