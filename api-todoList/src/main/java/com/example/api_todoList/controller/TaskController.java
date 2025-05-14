@@ -26,6 +26,7 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.CREATED).body(taskCreate);
     }
 
+
     @GetMapping
     public ResponseEntity<List<ResponseTaskDTO>> listTask(){
         List<ResponseTaskDTO> Tasks = service.listTask();
