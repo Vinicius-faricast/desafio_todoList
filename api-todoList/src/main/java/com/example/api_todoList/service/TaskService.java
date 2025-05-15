@@ -46,4 +46,19 @@ private TaskRepository repository;
                 .map(this::toResponseDTO)
                 .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
     }
+
+    public ResponseTaskDTO updateTask(long id, RequestTaskDTO dto){
+        return repository.findById(id).map(task -> {
+            task.setResponsible(dto.responsible());
+            task.setDescription(dto.description());
+            return toResponseDTO(repository.save(task));
+        }).orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+    }
+
+    public void deleteTask(Long id){
+        if(!repository.existsById(id)){
+            throw new RuntimeException("Tarefa não encontrada");
+        }
+        repository.deleteById(id);
+    }
 }

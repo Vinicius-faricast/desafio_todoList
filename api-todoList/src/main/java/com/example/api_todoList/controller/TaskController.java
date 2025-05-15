@@ -42,4 +42,24 @@ public class TaskController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<ResponseTaskDTO> updateTask(@PathVariable Long id, @RequestBody RequestTaskDTO dto){
+        try{
+            ResponseTaskDTO updateTask = service.updateTask(id, dto);
+            return ResponseEntity.ok(updateTask);
+        }catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<ResponseTaskDTO> deleteTask(@PathVariable Long id){
+        try {
+            service.deleteTask(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
