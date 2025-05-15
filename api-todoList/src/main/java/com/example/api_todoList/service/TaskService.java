@@ -6,6 +6,9 @@ import com.example.api_todoList.entity.Task;
 import com.example.api_todoList.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TaskService {
 
