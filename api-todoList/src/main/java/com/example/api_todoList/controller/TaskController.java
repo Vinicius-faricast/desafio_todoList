@@ -3,6 +3,7 @@ package com.example.api_todoList.controller;
 import com.example.api_todoList.DTO.RequestTaskDTO;
 import com.example.api_todoList.DTO.ResponseTaskDTO;
 import com.example.api_todoList.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class TaskController {
 
 
     @PostMapping
-    public ResponseEntity<ResponseTaskDTO> createTask(@RequestBody RequestTaskDTO dto){
+    public ResponseEntity<ResponseTaskDTO> createTask(@RequestBody @Valid RequestTaskDTO dto){
         ResponseTaskDTO taskCreate = service.createTask(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(taskCreate);
     }
@@ -44,7 +45,7 @@ public class TaskController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ResponseTaskDTO> updateTask(@PathVariable Long id, @RequestBody RequestTaskDTO dto){
+    public ResponseEntity<ResponseTaskDTO> updateTask(@PathVariable Long id, @RequestBody @Valid RequestTaskDTO dto){
         try{
             ResponseTaskDTO updateTask = service.updateTask(id, dto);
             return ResponseEntity.ok(updateTask);
