@@ -200,4 +200,47 @@ class ApiTodoListApplicationTests {
                 .exchange()                              // Executa a requisição
                 .expectStatus().isBadRequest();          // Verifica se retornou 400 (Bad Request)
     }
+
+    // Teste para verificar a deleção de task com sucesso
+    @Test
+    void testDeleteTaskSuccess() {
+        // Primeiro, criamos uma task para depois deletar
+        var taskRequest = new RequestTaskDTO("Task para Deletar", "Usuario Teste");
+        
+        // Cria a task e extrai o ID da resposta
+        Integer[] taskId = new Integer[1];
+        webTestClient
+                .post()                                  // Método HTTP POST
+                .uri("/api/todos")                       // URL da API
+                .contentType(MediaType.APPLICATION_JSON)  // Tipo do conteúdo
+                .bodyValue(taskRequest)                  // Dados da task
+                .exchange()                              // Executa a requisição
+                .expectStatus().isCreated()              // Verifica se criou com sucesso
+                .expectBody()
+                .jsonPath("$.id").value(id -> taskId[0] = ((Integer) id)); // Extrai o valor do ID
+
+        // Deleta a task criada
+        webTestClient
+                .delete()                                // Método HTTP DELETE
+                .uri("/api/todos/" + taskId[0])              // URL com ID da task
+                .exchange()                              // Executa a requisição
+                .expectStatus().isNoContent();           // Verifica se retornou 204 (No Content)
+
+        // Verifica se a task realmente foi deletada tentando buscá-la
+        webTestClient
+                .get()                                   // Método HTTP GET
+                .uri("/api/todos/" + taskId[0])              // URL com ID da task
+                .exchange()                              // Executa a requisição
+                .expectStatus().isNotFound();            // Verifica se retornou 404 (Not Found)
+    }
+
+    // Teste para verificar a falha ao tentar deletar uma task que não existe
+    @Test
+    void testDeleteTaskNotFound() {
+        webTestClient
+                .delete()                                // Método HTTP DELETE
+                .uri("/api/todos/999")                   // ID inexistente
+                .exchange()                              // Executa a requisição
+                .expectStatus().isNotFound();            // Verifica se retornou 404 (Not Found)
+    }
 }
