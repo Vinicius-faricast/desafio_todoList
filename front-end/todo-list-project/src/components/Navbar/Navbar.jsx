@@ -7,6 +7,8 @@ import { useState } from "react";
 export const Navbar = () => {
      const [isOpen, setIsOpen] = useState(false);
 
+    //  console.log(isOpen);
+
     return (
         <S.NavbarContainer>
             <S.NavBarContent>
@@ -16,10 +18,10 @@ export const Navbar = () => {
                 </S.MenuMobile>
                 <S.NavList $isOpen={isOpen}>
                     <S.NavItem>
-                        <NavLink to="/" end >List Tasks</NavLink>
+                        <NavLink to="../" end onClick={() => setIsOpen(false)}>List Tasks</NavLink>
                     </S.NavItem>
                     <S.NavItem>
-                        <NavLink to="/add-tasks" >Add Tasks</NavLink>
+                        <NavLink to="../add-tasks" onClick={() => setIsOpen(false)}>Add Tasks</NavLink>
                     </S.NavItem>
                 </S.NavList>
             </S.NavBarContent>
