@@ -1,7 +1,13 @@
+import { TaskItem } from "../TaskItem/TaskItem";
+import * as S from "./styles";
 export const ListTasks = () => {
     return (
-        <div>
-            <h1>ListTasks</h1>
-        </div>
+        <S.ListTasksContainer>
+            <S.ListTasksTitle>ListTasks</S.ListTasksTitle>
+            <S.ListTasks>
+                <TaskItem />
+                <TaskItem />
+            </S.ListTasks>
+        </S.ListTasksContainer>
     );
 };

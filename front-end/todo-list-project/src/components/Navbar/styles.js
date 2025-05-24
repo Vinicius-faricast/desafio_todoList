@@ -32,16 +32,17 @@ export const NavList = styled.ul`
     gap: 2rem;
     
     @media screen and (max-width: 500px) {
-        ${({isOpen}) => !isOpen
-            ? "display: none"
+
+        ${({$isOpen}) => !$isOpen
+            ? "display: none;"
             : `background: var(--color-light);
                 padding: 1rem;
                 flex-direction: column;
                 position: absolute;
                 font-size: 2rem;
                 right: 0px;
-                top: 3rem;`
-            }
+                top: 4rem;`
+        }
     }
 
 `;
