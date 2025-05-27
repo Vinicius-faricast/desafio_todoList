@@ -16,12 +16,16 @@ export const ListTasksTitle = styled.h1`
 `
 
 export const ListTasks = styled.ul`
-    max-width: 70%;
+    max-width: 80%;
     margin: 0 auto;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     list-style: none;
+
+    @media screen and (max-width: 500px) {
+        max-width: 100%;
+    }
 `
 
