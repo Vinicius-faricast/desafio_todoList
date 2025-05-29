@@ -9,7 +9,6 @@ export const TaskItemContainer = styled.div`
 
 export const TaskContentContainer = styled.div`
     display: flex;
-<<<<<<< HEAD
     max-width: 100%;
     flex-wrap: wrap;
     gap: .5rem;
@@ -18,12 +17,6 @@ export const TaskContentContainer = styled.div`
     padding: .5rem 1rem;
     border-bottom: 1px solid var(--color-alert);
 
-=======
-    justify-content: space-between;
-    align-items: center;
-    padding: .2rem 1rem;
-    border-bottom: 1px solid var(--color-alert);
->>>>>>> main
 `;
 
 export const TaskTitle = styled.h2`
