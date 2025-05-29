@@ -18,3 +18,8 @@ export const ModalTaskContent = styled.div`
     padding: 20px;
     border-radius: 5px;
 `;
+
+export const ContainerButtonCloseModalTask = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
