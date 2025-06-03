@@ -4,12 +4,12 @@ import * as S from "./styles";
 import { Context } from "../../context/Context";
 
 export const TaskItem = ({id, responsible, description}) => {
-    const {handleModal} = useContext(Context);
+    const {handleModal, setTask} = useContext(Context);
 
     const clickHandler = (responsible, description) => {
-        console.log(responsible, description);
-        handleModal();
 
+        setTask({responsible, description});
+        handleModal();
     }
 
     const deleteHandler = (id) => {
