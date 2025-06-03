@@ -1,8 +1,10 @@
+import { FormTask } from "../FormTask/FormTask";
+
 export const AddTasks = () => {
 
     return (
         <div>
-            <h1>AddTasks</h1>
+            <FormTask />
         </div>
     );
 };
