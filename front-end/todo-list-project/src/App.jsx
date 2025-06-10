@@ -13,10 +13,12 @@ function App() {
           v7_startTransition: true,
         }}>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<ListTasks />} />
-          <Route path="/add-tasks" element={<AddTasks />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<ListTasks />} />
+            <Route path="/add-tasks" element={<AddTasks />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </ContextProvider>
   )

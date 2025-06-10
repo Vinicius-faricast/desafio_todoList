@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ListTasksContainer = styled.main`
+export const ListTasksContainer = styled.div`
     max-width: 90%;
     margin: 1rem auto 0 auto;
     padding: 2rem 1rem;
@@ -16,7 +16,6 @@ export const ListTasksTitle = styled.h1`
 `
 
 export const ListTasks = styled.ul`
-    max-width: 80%;
     margin: 0 auto;
     padding: 1rem;
     display: flex;
