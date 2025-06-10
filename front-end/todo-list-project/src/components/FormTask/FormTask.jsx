@@ -2,14 +2,22 @@ import { useContext } from "react";
 import { ButtonTask } from "../ButtonTask.jsx/ButtonTask";
 import * as S from "./styles";
 import { Context } from "../../context/Context";
+import { useNavigate } from "react-router";
 
 export const FormTask = () => {
+    const navigate = useNavigate();
     const {task, handleModal, setTask} = useContext(Context);
     const handleSubmit = (e) => {
         e.preventDefault();
 
         console.log(e.target.description.value, e.target.responsible.value);
-        if(task === null) return
+        if(task === null) {
+            console.log('chamar a fetch para criar uma nova tarefa');
+            navigate("/");
+            return
+        }
+
+        console.log('chamar a fetch para atualizar uma tarefa');
         handleModal()
         setTask(null);
     };
