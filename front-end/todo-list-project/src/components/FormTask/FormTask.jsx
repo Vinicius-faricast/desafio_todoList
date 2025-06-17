@@ -3,21 +3,43 @@ import { ButtonTask } from "../ButtonTask.jsx/ButtonTask";
 import * as S from "./styles";
 import { Context } from "../../context/Context";
 import { useNavigate } from "react-router";
+import { TASK_POST, TASK_PUT } from "../../api";
 
 export const FormTask = () => {
     const navigate = useNavigate();
-    const {task, handleModal, setTask} = useContext(Context);
+    const { task, handleModal, setTask } = useContext(Context);
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(e.target.description.value, e.target.responsible.value);
-        if(task === null) {
-            console.log('chamar a fetch para criar uma nova tarefa');
+        if (task === null) {
+            const body = {
+                "description": e.target.description.value,
+                "responsible": e.target.responsible.value
+            }
+            const fetchTaskPost = async () => {
+                const {url, options} = TASK_POST(body);
+                const response = await fetch(url, options);
+                const json = await response.json();
+
+            }
+            fetchTaskPost();
             navigate("/");
             return
         }
 
-        console.log('chamar a fetch para atualizar uma tarefa');
+        const body = {
+            "id": task.id,
+            "description": e.target.description.value,
+            "responsible": e.target.responsible.value
+        }
+        const fetchTaskUpdate = async (body) => {
+            const {url, options} = TASK_PUT(body);
+            const response = await fetch(url, options);
+            const json = await response.json();
+        }
+        
+        fetchTaskUpdate(body);
+
         handleModal()
         setTask(null);
     };
@@ -30,7 +52,7 @@ export const FormTask = () => {
             </S.FormTaskContent>
             <S.FormTaskContent>
                 <S.FormTaskLabel htmlFor="responsible">Responsável</S.FormTaskLabel>
-                <S.FormTaskInput id="responsible" name="responsible" type="text" placeholder="Responsável" defaultValue={task === null ? '' : task.responsible}/>
+                <S.FormTaskInput id="responsible" name="responsible" type="text" placeholder="Responsável" defaultValue={task === null ? '' : task.responsible} />
             </S.FormTaskContent>
             <ButtonTask>Salvar</ButtonTask>
         </S.FormTaskContainer>
