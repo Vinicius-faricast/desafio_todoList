@@ -4,6 +4,7 @@ import { ModalTask } from "../ModalTask/ModalTask";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/Context";
 import { TASK_GET } from "../../api";
+import { TaskFetch } from "../../hooks/TaskFetch";
 export const ListTasks = () => {
 
 const { modal } = useContext(Context);
@@ -15,13 +16,13 @@ useEffect(()=> {
     const {url, options} = TASK_GET();
 
     const fetchTasks = async () => {
-        const response = await fetch(url, options);
-        const json = await response.json();
+        const responseJson = TaskFetch(url, options);
+        const json = await responseJson;
         setTasks(json);
     }
 
     fetchTasks();
-},[modal]);
+},[modal, tasks]);
 
     return (
         <S.ListTasksContainer>

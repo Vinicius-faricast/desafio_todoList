@@ -8,7 +8,7 @@ export const TaskItem = ({id, responsible, description}) => {
 
     const clickHandler = (responsible, description) => {
 
-        setTask({responsible, description});
+        setTask({id, responsible, description});
         handleModal();
     }
 
